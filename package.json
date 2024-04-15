@@ -1,0 +1,62 @@
+{
+  "name": "fabflow",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "concurrently \"npm:build:*\"",
+    "build:remix": "remix build",
+    "build:sass": "npm run generate:css -- --style=compressed --no-source-map",
+    "dev": "concurrently \"npm:dev:*\"",
+    "dev:remix": "cross-env NODE_ENV=development remix dev --manual -c \"node --watch-path server.js --watch server.js\"",
+    "dev:sass": "npm run generate:css -- --watch",
+    "generate:css": "sass --load-path=node_modules app/:app/",
+    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@carbon/react": "^1.53.1",
+    "@prisma/client": "^5.11.0",
+    "@remix-run/css-bundle": "^2.8.1",
+    "@remix-run/express": "^2.8.1",
+    "@remix-run/node": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
+    "ag-grid-react": "^31.2.0",
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "isbot": "^5.1.2",
+    "morgan": "^1.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "source-map-support": "^0.5.21"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.8.1",
+    "@types/compression": "^1.7.5",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.22",
+    "@types/source-map-support": "^0.5.10",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "chokidar": "^3.6.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prisma": "^5.11.0",
+    "sass": "^1.72.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

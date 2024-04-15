@@ -1,0 +1,45 @@
+/* @tailwind base; */
+@tailwind utilities;
+@tailwind components;
+
+body {
+  font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#content {
+  min-height: calc(100vh - 3rem);
+  margin-block-start: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#sidenav {
+  width: 3rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  flex-shrink: 0;
+  transition: width 0.11s cubic-bezier(0.2, 0, 1, 0.9);
+  will-change: width;
+}
+
+#sidenav.expanded {
+  width: 15.5rem;
+}
+
+main {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+h3, h4 {
+  margin-bottom: 8px;
+}
