@@ -1,9 +1,9 @@
 import { useCallback, useRef, useState } from "react";
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { MetaFunction, useLoaderData } from "@remix-run/react";
-import { prisma as orm } from "~/lib/prisma";
+// import { prisma as orm } from "~/lib/prisma";
 import { Form, Layer, TextInput, Tile } from "@carbon/react";
-import { Scales, FitToHeight, FitToWidth } from "@carbon/icons-react";
+// import { Scales, FitToHeight, FitToWidth } from "@carbon/icons-react";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
 import "ag-grid-community/styles/ag-grid.css";
@@ -26,14 +26,14 @@ interface gridInterface {
   prd_qtb: boolean;
 }
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const prdData = await orm.classes.findUnique({ where: { cls_ur: params.ref } });
-  const prdVariants = await orm.products.findMany({ where: { prd_cls: prdData?.cls_id } });
-  return json({ prdData, prdVariants });
-}
+// export async function loader({ params }: LoaderFunctionArgs) {
+//   const prdData = await orm.classes.findUnique({ where: { cls_ur: params.ref } });
+//   const prdVariants = await orm.products.findMany({ where: { prd_cls: prdData?.cls_id } });
+//   return json({ prdData, prdVariants });
+// }
 
 export default function ProductsView() {
-  const feed = useLoaderData<typeof loader>();
+  // const feed = useLoaderData<typeof loader>();
   const gridRef = useRef<AgGridReact<gridInterface>>(null);
 
   const [colDefs] = useState<ColDef[]>([
@@ -103,7 +103,7 @@ export default function ProductsView() {
         <h4 className="font-medium">Meta Data:</h4>
         <Tile>
           <Form>
-            <div className="grid grid-cols-2 gap-4">
+            {/* <div className="grid grid-cols-2 gap-4">
               <TextInput id="cls_id" labelText="ID" defaultValue={feed.prdData?.cls_id} readOnly />
               <TextInput id="cls_ur" labelText="Reference" defaultValue={feed.prdData?.cls_ur} readOnly />
               <TextInput id="cls_sku" labelText="SKU" defaultValue={feed.prdData?.cls_sku} readOnly />
@@ -111,7 +111,7 @@ export default function ProductsView() {
               <TextInput id="cls_desc" labelText="Description" defaultValue={feed.prdData?.cls_desc} readOnly />
               <TextInput id="cls_tags" labelText="Tags" defaultValue={feed.prdData?.cls_tags.toString()} readOnly />
               <TextInput id="cls_mft" labelText="Manufacturing Template" defaultValue={feed.prdData?.cls_mft?.toString()} readOnly />
-            </div>
+            </div> */}
           </Form>
         </Tile>
       </Tile>
@@ -119,7 +119,7 @@ export default function ProductsView() {
         <h4 className="font-medium">Variants:</h4>
         <Tile>
           <div className="ag-theme-quartz h-[35vh]">
-            <AgGridReact ref={gridRef} columnDefs={colDefs} rowData={feed.prdVariants} onFirstDataRendered={onGridRendered} />
+            {/* <AgGridReact ref={gridRef} columnDefs={colDefs} rowData={feed.prdVariants} onFirstDataRendered={onGridRendered} /> */}
           </div>
         </Tile>
       </Tile>

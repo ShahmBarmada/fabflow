@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { MetaFunction, useLoaderData, useNavigate } from "@remix-run/react";
-import { prisma as orm } from "~/lib/prisma";
+// import { prisma as orm } from "~/lib/prisma";
 import { Button, Layer, Search, Tile } from "@carbon/react";
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
@@ -11,10 +11,10 @@ export const meta: MetaFunction = () => {
   return [{ title: "Products" }];
 };
 
-export async function loader() {
-  const feed = await orm.classes.findMany();
-  return feed;
-}
+// export async function loader() {
+//   const feed = await orm.classes.findMany();
+//   return feed;
+// }
 
 interface gridInterface {
   cls_id: number;
@@ -30,7 +30,7 @@ interface gridInterface {
 }
 
 export default function ProductsIndex() {
-  const feed = useLoaderData<typeof loader>();
+  // const feed = useLoaderData<typeof loader>();
   const gridRef = useRef<AgGridReact<gridInterface>>(null);
   const navigate = useNavigate();
 
@@ -89,9 +89,9 @@ export default function ProductsIndex() {
     { headerName: "MFT", field: "cls_mft", cellDataType: "text" },
   ]);
 
-  const onGridRendered = useCallback(() => {
-    gridRef.current?.api.sizeColumnsToFit();
-  }, []);
+  // const onGridRendered = useCallback(() => {
+  //   gridRef.current?.api.sizeColumnsToFit();
+  // }, []);
 
   return (
     <Layer>
@@ -101,9 +101,9 @@ export default function ProductsIndex() {
           <Search size="lg" placeholder="search products" labelText="label text" closeButtonLabelText="clear" id="search-prds" />
           <Button onClick={() => navigate('/inventory/products/new')}>Add New</Button>
         </div>
-        <div className="ag-theme-quartz h-[50vh]">
+        {/* <div className="ag-theme-quartz h-[50vh]">
           <AgGridReact ref={gridRef} columnDefs={colDefs} rowData={feed} onFirstDataRendered={onGridRendered} />
-        </div>
+        </div> */}
       </Tile>
     </Layer>
   );
